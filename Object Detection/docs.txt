@@ -5,3 +5,21 @@
         -> Object Classification: Identifies what type of object is present in an image          ==> Single class
         -> Object Detection: Identifies and locate the presence of an object in an image         ==> Bounding box, class
         -> Object Segmentation: Identifies and separate the objects in an image on a pixel level ==> The exact shapes of objects
+
+2. Performance Evaluation Matrix:
+    * There are two matrixes to evaluate our object detection model:
+        => IoU - Intersection Over Union: Evaluate how good is the location ==> 0 --> 1
+            IoU  = (Area of Intersection) / (Area of Union)
+
+        => mAP - Mean Average Precision: Evaluate how good is the classification
+            Average precision:
+                - Confusion matrix 
+                    A table of the reel classes and the predicted classes.
+
+                - Precision
+                    Actual positives out of the total positive predictions
+                    Precision = (True positives) / (True positives + False positives)
+
+                - Recall
+                    Actual positives out of all predictions.
+                    Recall = (True positives) / (True positives + False Negatives)
