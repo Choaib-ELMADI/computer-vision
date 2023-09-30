@@ -1,0 +1,7 @@
+1. What is Object Detection:
+    * Object Detection is a computer vision technique for locating objects in a image or a video.
+    * Object Detection gives us the bounding box (x, y, width, height) of an object as well as the classification of that object.
+    * Image recognition types:
+        -> Object Classification: Identifies what type of object is present in an image          ==> Single class
+        -> Object Detection: Identifies and locate the presence of an object in an image         ==> Bounding box, class
+        -> Object Segmentation: Identifies and separate the objects in an image on a pixel level ==> The exact shapes of objects
