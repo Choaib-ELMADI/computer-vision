@@ -1,6 +1,6 @@
 import importlib.util
 
-package = "numpy"
+package = "opencv-python"
 
 if (importlib.util.find_spec(package)) is None:
     print(f"{package} is not installed")
