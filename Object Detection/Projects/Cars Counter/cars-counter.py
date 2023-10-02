@@ -88,6 +88,8 @@ classNames = [
     "toothbrush",
 ]
 limits = [360, 297, 673, 297]
+totalCount = []
+lineColor = (0, 0, 255)
 
 mask = cv2.imread(
     "C:/Users/Choaib ELMADI/Downloads/D.I.F.Y/Electronics/Computer Vision/Object Detection/Projects/Cars Counter/mask.png"
@@ -123,13 +125,35 @@ while True:
                 detections = np.vstack((detections, currentArray))
 
     trackerResults = tracker.update(detections)
-    cv2.line(frame, (limits[0], limits[1]), (limits[2], limits[3]), (0, 0, 255), 3)
+    cv2.line(frame, (limits[0], limits[1]), (limits[2], limits[3]), lineColor, 3)
+
+    cvzone.putTextRect(
+        frame,
+        f"Total Count: {len(totalCount)}",
+        (8, 24),
+        1.5,
+        2,
+        (255, 255, 255),
+        (247, 127, 0),
+        cv2.FONT_HERSHEY_PLAIN,
+        5,
+    )
 
     for res in trackerResults:
         x1, y1, x2, y2, id = res
         x1, y1, w, h = int(x1), int(y1), int(x2 - x1), int(y2 - y1)
         cvzone.cornerRect(frame, (x1, y1, w, h), 10, 2, 1)
         cvzone.putTextRect(frame, f"{int(id)}", (x1, y1 - 5))
+
+        cx, cy = int(x1 + w / 2), int(y1 + h / 2)
+        cv2.circle(frame, (cx, cy), 3, (247, 127, 0), cv2.FILLED)
+
+        if limits[0] <= cx <= limits[2] and limits[1] - 15 <= cy <= limits[1] + 15:
+            if totalCount.count(id) == 0:
+                lineColor = (0, 255, 0)
+                totalCount.append(id)
+            else:
+                lineColor = (0, 0, 255)
 
     cv2.imshow("Cars Counter", frame)
     cv2.waitKey(1)
