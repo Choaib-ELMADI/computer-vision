@@ -116,7 +116,7 @@ while True:
         "C:/Users/Choaib ELMADI/Downloads/D.I.F.Y/Electronics/Computer Vision/Object Detection/Projects/People Tracking/graphics.png",
         cv2.IMREAD_UNCHANGED,
     )
-    frame = cvzone.overlayPNG(frame, imgGraphics, (920, 260))
+    frame = cvzone.overlayPNG(frame, imgGraphics, (240, 0))
     results = model(frameRegion, stream=True)
 
     detections = np.empty((0, 5))
@@ -158,7 +158,7 @@ while True:
     cvzone.putTextRect(
         frame,
         f"{len(totalCountDown)}",
-        (1220, 310),
+        (535, 50),
         2.5,
         2,
         (0, 0, 255),
@@ -170,7 +170,7 @@ while True:
     cvzone.putTextRect(
         frame,
         f"{len(totalCountUp)}",
-        (1050, 310),
+        (375, 50),
         2.5,
         2,
         (0, 255, 0),
