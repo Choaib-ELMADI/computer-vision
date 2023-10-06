@@ -86,9 +86,9 @@ classNames = [
     "toothbrush",
 ]
 
-cap = cv2.VideoCapture(0)
-cap.set(3, 1280)
-cap.set(4, 720)
+cap = cv2.VideoCapture(
+    "C:/Users/Choaib ELMADI/Downloads/D.I.F.Y/Electronics/Computer Vision/Object Detection/Images/people-tracking.jpg"
+)
 
 model = YOLO(
     "C:/Users/Choaib ELMADI/Downloads/D.I.F.Y/Electronics/Computer Vision/Object Detection/Yolo Weights/yolov8n.pt"
@@ -113,13 +113,14 @@ while True:
             #! FOR THE CLASSIFICATION
             cls = box.cls[0]  #! ==> float class id
             clsIndex = int(cls)
-            cvzone.putTextRect(
-                img,
-                f"{classNames[clsIndex]} {conf}",
-                (max(5, x1), max(35, y1 - 20)),
-                1,
-                1,
-            )
+            if classNames[clsIndex] == "person":
+                cvzone.putTextRect(
+                    img,
+                    f"{classNames[clsIndex]} {conf}",
+                    (max(5, x1), max(35, y1 - 20)),
+                    1,
+                    1,
+                )
 
     cv2.imshow("Image", img)
-    cv2.waitKey(1)
+    cv2.waitKey(0)
