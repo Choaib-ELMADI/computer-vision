@@ -6,7 +6,7 @@ model = YOLO(
 )
 
 results = model(
-    "C:/Users/Choaib ELMADI/Downloads/D.I.F.Y/Electronics/Computer Vision/Object Detection/Images/cars.png",
+    "C:/Users/Choaib ELMADI/Downloads/D.I.F.Y/Electronics/Computer Vision/Object Detection/Images/people-escalator.jpg",
     show=True,  #! Show the output image ==> Classification and confidence level of detected objects
 )
 cv2.waitKey(0)  #! Keep image opened until the user presses a key
