@@ -31,8 +31,11 @@ classNames = [
     "wheel loader",
 ]
 
+background = (247, 127, 0)
+
+# cap = cv2.VideoCapture(0)
 cap = cv2.VideoCapture(
-    "C:/Users/Choaib ELMADI/Downloads/D.I.F.Y/Electronics/Computer Vision/Object Detection/Videos/ppe-1.mp4"
+    "C:/Users/Choaib ELMADI/Downloads/D.I.F.Y/Electronics/Computer Vision/Object Detection/Videos/ppe-3.mp4"
 )
 cap.set(3, 640)
 cap.set(4, 480)
@@ -57,12 +60,21 @@ while True:
 
             cls = box.cls[0]
             clsIndex = int(cls)
+            if classNames[clsIndex].startswith("NO-"):
+                background = (0, 0, 255)
+            else:
+                if classNames[clsIndex] == "Person":
+                    background = (247, 127, 0)
+                else:
+                    background = (100, 255, 0)
             cvzone.putTextRect(
                 img,
                 f"{classNames[clsIndex]} {conf}",
                 (max(5, x1), max(35, y1 - 20)),
                 1,
                 1,
+                (255, 255, 255),
+                background,
             )
 
     cv2.imshow("PPE Detection", img)
