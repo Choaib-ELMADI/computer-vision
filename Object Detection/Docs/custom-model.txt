@@ -1,0 +1,52 @@
+1. We need a dataset:
+    -> https://universe.roboflow.com
+
+2. The structure of the dataset:
+    > test
+        > images
+            - img 1
+            - img 2
+            - img 3
+            ...
+        > labels
+            - For each image, we have a corresponding text file that contains all the classifications and their coordinates in the image (normalized values 0 --> 1) (x, y, width, height)
+
+    > train
+        > images
+            - img 1
+            - img 2
+            - img 3
+            ...
+        > labels
+            - For each image, we have a corresponding text file that contains all the classifications and their coordinates in the image (normalized values 0 --> 1) (x, y, width, height)
+
+    > valid
+        > images
+            - img 1
+            - img 2
+            - img 3
+            ...
+        > labels
+            - For each image, we have a corresponding text file that contains all the classifications and their coordinates in the image (normalized values 0 --> 1) (x, y, width, height)
+
+    - data.yaml: It gatheres all the information
+
+3. Add your dataset to Google drive:
+    -> Update the data.yaml file: add the path of the dataset in the drive
+
+4. How to label your own images:
+    -> https://github.com/heartexlabs/labelImg
+    -> Set your predefined classes
+    -> Execute labelImg.exe
+    -> Set save format to YOLO
+
+5. Google Colab:
+    -> Mount your drive to Google Colab
+
+    >_ !nvidia-smi: Checks if we are using a GPU
+    >_ !pip install ultralytics
+    >_ from ultralytics import YOLO
+    >_ !yolo task=detect mode=predict model=yolov8n.pt conf=0.25 source="https://ultralytics.com/images/bus.jpg": Just a test
+    >_ !yolo task=detect mode=train model=yolov8n.pt data=../content/drive/MyDrive/Datasets/DatasetName/data.yaml epochs=50 imgsz=640: Train the model
+
+    -> Get your weights: /runs/detect/train/weights/best.yaml
