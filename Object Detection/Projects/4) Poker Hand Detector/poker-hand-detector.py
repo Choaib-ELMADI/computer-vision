@@ -60,7 +60,7 @@ classNames = [
 ]
 
 cap = cv2.VideoCapture(
-    1
+    1  # For a webcam
     # "C:/Users/Choaib ELMADI/Downloads/D.I.F.Y/Electronics/Computer Vision/Object Detection/Images/mypoker.jpg"
 )
 cap.set(3, 1280)
@@ -94,10 +94,12 @@ while True:
             if conf > 0.4:
                 hand.append(classNames[clsIndex])
 
-    hand = list(set(hand))
+    if len(hand) == 0:
+        cvzone.putTextRect(img, "Your Hand is Empty", (30, 40), 1.5, 2, offset=6)
+
     if len(hand) == 5:
         res = findPokerHand.findPokerHand(hand)
-        cvzone.putTextRect(img, f"{res}", (40, 30), 1.5, 1, offset=6)
+        cvzone.putTextRect(img, f"Your Hand: {res}", (30, 40), 1.5, 2, offset=6)
 
     cv2.imshow("Image", img)
     cv2.waitKey(1)
